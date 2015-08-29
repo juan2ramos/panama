@@ -1,0 +1,454 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+*:focus {
+    outline: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    background: #F3F3F3;
+    color: #03305A;
+    font-family: "Red Bull Siri", "Charcoal CY", "MS PGothic", "Arial Unicode MS", Tahoma, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+body, h2, h3, h4, p {
+    font-weight: 300
+}
+
+h1, h2, h3, ul,ol {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    max-width: 100%;
+}
+
+li {
+    list-style: none;
+    font-weight: 300;
+}
+
+main {
+    margin: auto;
+    max-width: 65rem;
+    width: 90%;
+    padding: 2rem;
+    position:relative;
+}
+
+p {
+ text-align: justify;
+}
+
+@font-face {
+    font-family: 'Red Bull Siri';
+    src: url('fonts/RedBullSiriCore-Regular.eot');
+    src: url('fonts/RedBullSiriCore-Regular.woff') format('woff'), url('fonts/RedBullSiriCore-Regular.ttf') format('truetype'), url('fonts/RedBullSiricore-Regular.svg#webfont') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Red Bull Siri';
+    src: url('fonts/RedBullSiri-Black.eot');
+    src: url('fonts/RedBullSiri-Black.woff') format('woff'), url('fonts/RedBullSiri-Black.ttf') format('truetype'), url('fonts/RedBullSiri-Black.svg#webfont') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/*=================================================================
+header
+===================================================================*/
+h1 {
+    font-size: 1.8rem;
+    margin: 15px 0 20px;
+}
+
+.logo {
+    margin: 30px auto 0;
+    max-width: 200px;
+    width: 90%;
+}
+
+/*=================================================================
+form
+===================================================================*/
+fieldset {
+    border: none;
+    margin: 1rem 0;
+    padding: 0;
+}
+
+.input-content {
+    margin: 1.5rem 0;
+    position: relative;
+}
+
+input, select {
+    background: #e0e0e0;
+    border: 1px solid #BFBFBF;
+    border-radius: 2px;
+    font-size: 14px;
+    padding: 0.4em 1em;
+    width: 59%;
+}
+
+label {
+    color: #d60c41;
+    display: inline-block;
+    font-size: 1.3rem;
+    width: 40%;
+}
+
+legend {
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 0;
+    color: #2A438B;
+}
+
+.loading, .content-error {
+    background: rgba(243, 243, 243, 0.8);
+    display: none;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.error {
+    background: #ededed;
+    border-radius: 7px;
+    border: 2px solid #2A438B;
+    box-shadow: 0px 1px 10px #6F6E6E;
+    left: calc(50vw - 300px);
+    max-width: 90%;
+    padding: 1.9rem 3.2rem;
+    position: absolute;
+    top: 6rem;
+    width: 600px;
+}
+
+.error .title {
+    color: #d60c41;
+    font-size: 1.3rem;
+}
+
+button {
+    background: url("../images/button.png") no-repeat center;
+    border: none;
+    color: white;
+    height: 52px;
+    width: 167px;
+    float: right;
+    margin: 20px 0;
+    text-align: left;
+    padding: 19px 34px;
+    font-weight: bold;
+}
+
+.content-p {
+    margin: 10px 0;
+}
+
+input[type='file'] {
+    width: 100%;
+    opacity: 0;
+    height: 100%;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    z-index:2;
+}
+
+select {
+    height: 30px;
+}
+
+.content-p {
+    margin: 10px 0;
+}
+
+li {
+    list-style: inherit;
+    margin: 5px 50px;
+}
+
+.fileUp {
+    top: 0;
+    left: 0;
+    border: 1px dashed gray;
+    background: #E0E0E0;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    border-radius: 4px;
+    text-align: center;
+    color: #2A438E;
+    line-height: 191px;
+    text-transform: uppercase;
+    font-size: .8rem;
+}
+
+.close {
+    background: url(../images/close.png) no-repeat center;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    background-size: cover;
+    cursor: pointer;
+}
+
+@media (max-width: 50rem) {
+    .input-content .content-code{
+        width: 100%;
+    }
+    li {
+        margin: 2px 8px;
+        font-size: .87rem;
+    }
+    .error {
+        padding: 2rem 1rem 0;
+        left: 5%;
+        top: 1rem
+    }
+
+    label {
+        display: block;
+        font-size: 1rem;
+        width: 100%;
+    }
+
+    input, select {
+        margin: 5px 0;
+        width: 100%;
+    }
+
+    legend {
+        text-align: center;
+    }
+
+    main {
+        padding: 1rem;
+        width: 100%;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    h1 {
+        font-size: 1.2rem;
+    }
+}
+
+.content-image {
+    position: relative;
+    height: 150px;
+}
+
+.spinner {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    margin-top: -15px;
+    margin-left: -15px;
+    border: 3px solid #d60c41;
+    border-radius: 50%;
+    border-color: transparent #d60c41;
+    animation: rot 1s linear infinite;
+    z-index: 100;
+}
+
+.spinner:after, .spinner:before {
+    content: "";
+    position: absolute;
+    width: 7.5px;
+    height: 7.5px;
+    border: 3px solid #d60c41;
+}
+
+.spinner:after {
+    top: 0;
+    right: 0;
+    border-color: #d60c41 transparent transparent #d60c41;
+    transform: translateX(50%) translateY(5%);
+}
+
+.spinner:before {
+    bottom: 0;
+    left: 0;
+    border-color: transparent #d60c41 #d60c41 transparent;
+    transform: translateX(-50%) translateY(-5%);
+}
+
+@keyframes rot {
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+.show {
+    display: block;
+}
+
+.hoverFile {
+    border: 2px dashed gray;
+    background: #FFFFFF;
+}
+
+hr {
+    border-top: #BFBFBF 1px solid;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+}
+.img-upload{
+    width: 64px;
+    position: relative;
+    z-index: 1;
+    left: calc( 50% - 32px );
+    top: 30px;
+}
+.img-upload svg{
+   fill:#d60c41;
+}
+.thanks{
+    font-size: 1.7rem;
+    color: #E31A4C;
+    text-align: center;
+    margin: 20px;
+    display: block;
+}
+
+/*=================================================================
+Login
+===================================================================*/
+.login{
+    max-width: 400px;
+    text-align: right;
+}
+.login input{
+    display: block;
+    margin: 10px;
+    width: 100%;
+}
+.login button{
+    float: inherit;
+}
+/*=================================================================
+teams
+===================================================================*/
+.team-table{
+    background: #fff;
+    margin-bottom: 1.25rem;
+    border: solid 1px #ddd;
+    table-layout: auto;
+    width: 100%;
+    text-align: left;
+}
+.team-table  thead {
+    background: #F5F5F5;
+}
+.team-table  thead  td {
+    padding: 12px;
+    font-size: 0.875rem;
+    font-weight: bold;
+    color: #222;
+    line-height: 1.125rem;
+
+}
+.team-table tr td {
+    padding: 12px;
+
+}
+.teams h2{
+    color: #DB0841;
+    margin: 10px 0;
+}
+.see_more {
+    background: #F0F0F0;
+    color: #DB0841;
+    border-radius: 3px;
+    padding: 0.5em 1em;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    display: block;
+    width: 108px;
+    font-weight: 600;
+}
+.team-table tr:nth-child(even) {
+    background: #F9F9F9;
+}
+.excel{
+display: block;
+width: 80px;
+position: absolute;
+top: 38px;
+right: 31px;
+}
+.excel:hover svg{
+fill:red
+}
+.bar-admin{
+    background-color: black;
+    padding: 10px;
+    text-align: right;
+}
+
+.bar-admin a{
+    color: white;
+}
+.back{
+    padding: 10px;
+    background-color: #E2194B;
+    color: white;
+    margin: 0px 0 25px;
+    display: block;
+    width: 100px;
+    text-align: center;
+}
+.error-s{
+    position: absolute;
+    top: -18px;
+    color: red;
+}
+h4{
+    margin: 40px 0 10px;
+    color: #E2194B;
+    font-size: 1.5rem;
+}
+.tecnicas{
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 32%;
+    padding: 10px;
+    text-align: center;
+}
+
+.content-code{
+    display: inline-block;
+    width: 59%;
+}
+.code{
+    width: 90px;
+}
+ .content-code .code:last-child{
+    width: 64px;
+}
