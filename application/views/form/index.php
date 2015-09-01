@@ -1,5 +1,5 @@
 <main>
-    <h1>REGISTRO RED BULL COSTA RICA WINNING 5</h1>
+    <h1>REGISTRO RED BULL PANAMÁ WINNING 5</h1>
 
 
     <?php echo form_open('home/post', array('id' => 'form', 'enctype' => 'multipar/form-data')); ?>
@@ -238,8 +238,48 @@
 
     </fieldset>
 
+    <hr>
+    <fieldset>
+        <legend>Miembro 6 del equipo (opcional)</legend>
+        <div class="input-content">
+            <label for="names-6">Nombre y Apellido: </label>
+            <input type="text"   name="names-6" id="names-6" placeholder="Nombre y Apellido">
+        </div>
+        <div class="input-content">
+            <label for="birthday-6">Fecha de nacimiento: </label>
+            <input type="text"  name="birthday-6" class="datepicker" id="birthday-6" placeholder="AA/MM/DD">
+        </div>
+        <div class="input-content">
+            <label for="identification-6">Número de Cédula </label>
+            <input type="text"  name="identification-6" id="identification-6" placeholder="Número de Cédula">
+        </div>
+        <div class="input-content">
+            <label for="phone-6">Número de Celular </label>
+            <input type="text" name="phone-6" id="phone-6" placeholder="Número de Celular ">
+        </div>
+        <div class="input-content">
+            <label for="email-6">E-mail: </label>
+            <input type="email"  name="email-6" id="email-6" class="email" placeholder="usuario6@dominio.com">
+        </div>
+        <div class="input-content">
+            <label for="address-6">Dirección: </label>
+            <input type="text" name="address-6" id="address-6" placeholder="Dirección">
+        </div>
+        <div class="input-content">
+            <label for="college-6">Universidad: </label>
+            <input type="text"  name="college-6" id="college-6" placeholder="Universidad">
+        </div>
+        <div class="input-content">
+            <label for="workplace-6">Lugar de Trabajo: </label>
+            <input type="text" name="workplace-6" id="workplace-6" placeholder="Lugar de Trabajo:">
+        </div>
+
+
+
+    </fieldset>
+
     <div class="input-content">
-        <label for="address-5">He leido el reglamento y estoy de acuerdo en cada uno de los puntos. </label>
+        <label for="">He leido el reglamento y estoy de acuerdo en cada uno de los puntos. </label>
         <input data-value="requiredField" type="checkbox" name="check">
     </div>
     <button> GUARDAR</button>

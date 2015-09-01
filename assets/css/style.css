@@ -475,3 +475,6 @@ h4{
     color: #E2194B;
     font-size: 1.3rem;
 }
+input[type="checkbox"], input[type="radio"]{
+    width: 15px;
+}

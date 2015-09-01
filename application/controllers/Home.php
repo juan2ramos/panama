@@ -65,8 +65,11 @@ class Home extends CI_Controller
         $college5 = (isset($post['college-5'])) ? $post['college-5'] : '';
         $workplaces5 = (isset($post['workplace-5'])) ? $post['workplace-5'] : '';
 
+        $college6 = (isset($post['college-6'])) ? $post['college-6'] : '';
+        $workplaces6 = (isset($post['workplace-6'])) ? $post['workplace-6'] : '';
+
         $countTeams = $this->team_model->getTeamRows();
-        $countTeams = ($countTeams <= 128) ? ($countTeams == 0) ? 0 : $countTeams  : $countTeams - 128 ;
+        $countTeams = ($countTeams <= 128) ? ($countTeams == 0) ? 0 : $countTeams : $countTeams - 128;
         $idDates = ceil($countTeams / 32);
 
 
@@ -139,12 +142,29 @@ class Home extends CI_Controller
             'captain' => ($post['captain'] == 5) ? 1 : 0,
             'id_team' => $idTeam
         );
-
         $this->users_model->addUser($user);
         $this->users_model->addUser($user2);
         $this->users_model->addUser($user3);
         $this->users_model->addUser($user4);
         $this->users_model->addUser($user5);
+        if (!empty($post['names-6'])){
+
+            $user6 = array(
+                'names' => $post['names-6'],
+                'birthday' => $post['birthday-6'],
+                'email' => $post['email-6'],
+                'identification' => $post['identification-6'],
+                'phone' => $post['phone-6'],
+                'address' => $post['address-6'],
+                'college' => $college6,
+                'workplace' => $workplaces6,
+                'captain' =>  0,
+                'id_team' => $idTeam
+            );
+            $this->users_model->addUser($user6);
+        }
+
+
 
         $code = array(
             'status' => 1,
@@ -156,7 +176,9 @@ class Home extends CI_Controller
 
     private function validate()
     {
-        if ($this->input->post()) {
+        $post = $this->input->post();
+
+        if ($post) {
 
             $config = array(
                 array('field' => 'code', 'label' => 'code-1', 'rules' => 'required|callback_validateCode'),
@@ -200,6 +222,17 @@ class Home extends CI_Controller
 
 
             );
+            if (!empty($post['names-6']) || !empty($post['birthday-6']) || !empty($post['identification-6']) ||
+                !empty($post['phone-6']) || !empty($post['email-6']) || !empty($post['address-6'])
+            ) {
+                array_push($config,
+                    array('field' => 'names-6', 'label' => 'names-6', 'rules' => 'required'),
+                    array('field' => 'birthday-6', 'label' => 'birthday-6', 'rules' => 'required'),
+                    array('field' => 'identification-6', 'label' => 'identification-6', 'rules' => 'required|is_unique[users.identification]'),
+                    array('field' => 'email-6', 'label' => 'email-6', 'rules' => 'required|valid_email|is_unique[users.email]'),
+                    array('field' => 'address-6', 'label' => 'address-6', 'rules' => 'required')
+                );
+            }
 
 
             $this->form_validation->set_message('required', '%s');
@@ -224,7 +257,7 @@ class Home extends CI_Controller
 
     function validateCode($str)
     {
-
-        return $this->code_model->getCodeWhere($str);
+        return true;
+        //return $this->code_model->getCodeWhere($str);
     }
 }

@@ -150,6 +150,13 @@ $(function () {
             $('#successNames-5').text($('#names-5').val());
             $('#successIdentification-5').text($('#identification-5').val());
 
+            if($('#names-6').val() != ''){
+
+                $('#successNames-6').text($('#names-6').val());
+                $('#successIdentification-6').text($('#identification-6').val());
+
+            }
+
             $('.capitan-' + $('input:radio[name=captain]:checked').val()).text('CAPITAN');
 
             $('.success').show();
