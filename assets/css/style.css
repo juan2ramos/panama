@@ -448,7 +448,30 @@ h4{
 }
 .code{
     width: 90px;
+    text-transform: uppercase;
 }
  .content-code .code:last-child{
     width: 64px;
+}
+ .success{
+     display: none;
+ }
+ .success h2{
+     font-size: 1.5rem;
+     font-weight: 600;
+     padding: 0;
+     color: #2A438B;
+ }
+ .success h3{
+     font-size: 1.4rem;
+     font-weight: 600;
+     padding: 0;
+     color: #2A438B;
+     margin-top: 10px;
+
+ }
+
+.success .user{
+    color: #E2194B;
+    font-size: 1.3rem;
 }

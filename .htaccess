@@ -1,0 +1,9 @@
+
+RewriteEngine On
+RewriteBase /redbull/mexico/winning5/
+RewriteCond $1 !^(index\.php|assets|robots\.txt)
+RewriteRule ^(.*)$ ./index.php/$1 [L]
+
+#RewriteCond %{HTTP_HOST} !^www\.
+#RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+

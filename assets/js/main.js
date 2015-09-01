@@ -12,11 +12,33 @@ var filesForm = {
 }, validationForm = [];
 
 $(function () {
-    $( ".datepicker" ).datepicker({changeYear: true,dateFormat: 'yy-mm-dd',yearRange: "1900:2015" }).on('change',function(ev){
+    $(".datepicker").datepicker({
+        changeYear: true,
+        dateFormat: 'yy-mm-dd',
+        yearRange: "1900:2015"
+    }).on('change', function (ev) {
         $(this).removeClass('fail');
         $(this).css({'border-color': '#BFBFBF'});
         $(this).parent().find('.error-s').remove();
     });
+    $.datepicker.regional['es'] = {
+        closeText: 'Cerrar',
+        prevText: '<Ant',
+        nextText: 'Sig>',
+        currentText: 'Hoy',
+        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Sept', 'Octubre', 'Noviembre', 'Diciembre'],
+        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+        dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+        dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+        weekHeader: 'Sm',
+        dateFormat: 'dd/mm/yy',
+        firstDay: 1,
+        isRTL: false,
+        showMonthAfterYear: false,
+        yearSuffix: ''
+    };
+    $.datepicker.setDefaults($.datepicker.regional['es']);
 
 
     $('.code').keyup(function () {
@@ -27,7 +49,7 @@ $(function () {
 
 
     $('#form').on("submit", function (e) {
-       e.preventDefault();
+        e.preventDefault();
 
 
         validationForm = [];
@@ -35,6 +57,26 @@ $(function () {
         $(this).find('input').each(function () {
             validate($(this))
         });
+        if (!$('input[type="checkbox"]').is(':checked')) {
+
+            $('input[type="checkbox"]').addClass('fail');
+            $('input[type="checkbox"]').before("<span class='error-s'>Se debe aceptar los términos</span>");
+            $('input[type="checkbox"]').css({'border-color': '#D60C41'});
+            validationForm.push($('input[type="checkbox"]'));
+
+        }
+
+        if (!$('input:radio[name=captain]').is(':checked')) {
+
+            if (validationForm.length == 0) {
+                validationForm.push($('input:radio[name=captain]'));
+                topMove = $('#captain').offset().top - 20;
+                $('html, body').animate({scrollTop: topMove}, 'slow');
+                $('input:radio[name=captain]').before("<span class='error-s'>EL equipo debe tener 1 capitán</span>");
+                return;
+            }
+
+        }
 
 
         if (validationForm.length == 0) {
@@ -75,23 +117,43 @@ $(function () {
 
                 if (str2 != undefined) {
 
-                     message = (str2 == "email")?'El mail ya esta registrado':(str2 == "code-1")?'Codigo invalido':'Número de Cédula ya registrada';
+                    message = (str2 == "email" || str2 == "email-2" || str2 == "email-3" || str2 == "email-4" || str2 == "email-5")
+                        ? 'El mail ya esta registrado' : (str2 == "code-1") ? 'Codigo invalido' : (str2 == 'name-team') ? ' Nombre del equipo ya esta registrado ' : 'Número de Cédula ya registrada';
                     $("input[name=" + str2 + "]").before("<span class='error-s'>" + message + "</span>");
-
                     $("input[name=" + str2 + "]").css({'border-color': '#D60C41'}, {'background-color': 'red'});
                     $("input[name=" + str2 + "]").addClass('fail');
+
+
                 } else {
                     $("input[name='" + str + "']").before("<span class='error-s'>El campo no puede estar vacío</span>");
                     $("input[name='" + str + "']").css({'border-color': '#D60C41'}, {'background-color': 'red'});
                 }
-              //  topMove = $('#form').find(' input.fail').first().offset().top - 20;
-              //  $('html, body').animate({scrollTop: topMove}, 'slow')
+
             }
+            topMove = $('#form').find('input.fail').first().offset().top - 20;
+            $('html, body').animate({scrollTop: topMove}, 'slow')
         }
         else {
-                $('main').append(" <span class='thanks'>Gracias por inscribirte, en cuanto verifiquemos los datos te confirmaremos vía correo electrónico tu participación en Red Bull.</span>");
-                $('#form').slideUp("slow");
+            $('main').append(" <span class='thanks'>Gracias por inscribirte, en cuanto verifiquemos los datos te confirmaremos vía correo electrónico tu participación en Red Bull.</span>");
 
+
+            $('#nombreEquipo').text($('#name-team').val());
+
+            $('#successNames').text($('#names').val());
+            $('#successIdentification').text($('#identification').val());
+            $('#successNames-2').text($('#names-2').val());
+            $('#successIdentification-2').text($('#identification-2').val());
+            $('#successNames-3').text($('#names-3').val());
+            $('#successIdentification-3').text($('#identification-3').val());
+            $('#successNames-4').text($('#names-4').val());
+            $('#successIdentification-4').text($('#identification-4').val());
+            $('#successNames-5').text($('#names-5').val());
+            $('#successIdentification-5').text($('#identification-5').val());
+
+            $('.capitan-' + $('input:radio[name=captain]:checked').val()).text('CAPITAN');
+
+            $('.success').show();
+            $('#form').slideUp("slow");
 
         }
     }
@@ -111,13 +173,12 @@ $(function () {
 function requiredField($element) {
 
 
-
     $element.siblings(".error-s").remove();
     $element.css({'border-color': '#BFBFBF'});
     $element.removeClass('fail');
 
     if (!$element.val()) {
-        if($element.attr('name') == 'code-1' || $element.attr('name') == 'code-2' || $element.attr('name') == 'code-3'){
+        if ($element.attr('name') == 'code-1' || $element.attr('name') == 'code-2' || $element.attr('name') == 'code-3') {
             $('#code-1').removeClass('fail');
             $('#code-1').addClass('fail');
             $('#code-1').before("<span class='error-s'>El campo no puede estar vacío</span>");
@@ -127,7 +188,7 @@ function requiredField($element) {
             $('#code-3').css({'border-color': '#D60C41'});
             validationForm.push($element);
 
-        }else{
+        } else {
 
             $element.addClass('fail');
             $element.before("<span class='error-s'>El campo no puede estar vacío</span>");

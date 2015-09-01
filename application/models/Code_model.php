@@ -22,12 +22,13 @@ class Code_model extends CI_Model
         $this->db->where('status','0');
 
         $query = $this->db->get('codes');
-        return $query->result_array();
+        return ($query->num_rows() > 0)?true:false;
     }
     function getCode($id) {
         $this->db->where('id',$id);
         $query = $this->db->get('codes');
         return $query->result_array();;
+
     }
 
     function updateCode($postData, $code ) {
